@@ -303,10 +303,10 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
   }, onEncryptionError: (connection, errorType) {
     agoraEventHandlers.onEncryptionError?.call(connection, errorType);
   }, 
-       // onExtensionError: (provider, extension, error, message) {
-  //   agoraEventHandlers.onExtensionError
-  //       ?.call(provider, extension, error, message);
-  // }, 
+   onExtensionErrorWithContext: (extensionContext, {
+    agoraEventHandlers.onExtensionError
+        ?.call(provider, extension, error, message);
+  }, 
     onExtensionEvent: (provider, extension, key, value) {
     agoraEventHandlers.onExtensionEvent?.call(provider, extension, key, value);
   }, onExtensionStarted: (provider, extension) {
