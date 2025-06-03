@@ -27,8 +27,8 @@ class SessionController extends ValueNotifier<AgoraSettings> {
       : super(
           AgoraSettings(
             engine: createAgoraRtcEngine(),
-            agoraRtmChannel: null,
-            agoraRtmClient: null,
+            // agoraRtmChannel: null,
+            // agoraRtmClient: null,
             users: [],
             mainAgoraUser: AgoraUser(
               uid: 0,
@@ -54,19 +54,19 @@ class SessionController extends ValueNotifier<AgoraSettings> {
         );
 
   /// Function to initialize the Agora RTM client.
-  Future<void> initializeRtm(
-      AgoraRtmClientEventHandler agoraRtmClientEventHandler) async {
-    value = value.copyWith(
-      agoraRtmClient: await AgoraRtmClient.createInstance(
-        value.connectionData!.appId,
-      ),
-    );
-    if (value.agoraRtmClient != null) {
-      addListener(() {
-        createRtmClientEvents(agoraRtmClientEventHandler);
-      });
-    }
-  }
+  // Future<void> initializeRtm(
+  //     AgoraRtmClientEventHandler agoraRtmClientEventHandler) async {
+  //   // value = value.copyWith(
+  //   //   agoraRtmClient: await AgoraRtmClient.createInstance(
+  //   //     value.connectionData!.appId,
+  //   //   ),
+  //   // );
+  //   if (value.agoraRtmClient != null) {
+  //     addListener(() {
+  //       createRtmClientEvents(agoraRtmClientEventHandler);
+  //     });
+  //   }
+  // }
 
   /// Function to initialize the Agora RTC engine.
   Future<void> initializeEngine(
@@ -78,7 +78,7 @@ class SessionController extends ValueNotifier<AgoraSettings> {
     log("SDK initialized: ${value.engine}", level: Level.error.value);
     // Getting SDK versions and assigning them
     SDKBuildInfo? rtcVersion = await value.engine?.getVersion();
-    AgoraVersions.staticRTM = await AgoraRtmClient.getSdkVersion();
+    // AgoraVersions.staticRTM = await AgoraRtmClient.getSdkVersion();
     if (rtcVersion?.version.toString() != null) {
       AgoraVersions.staticRTC = rtcVersion!.version.toString();
     }
@@ -89,27 +89,27 @@ class SessionController extends ValueNotifier<AgoraSettings> {
   }
 
   /// Function to trigger all the AgoraRtcEventHandlers.
-  void createEvents(
-    AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
-    AgoraRtcEventHandlers agoraEventHandlers,
-  ) async {
-    value.engine?.registerEventHandler(
-      await rtcEngineEventHandler(
-        agoraEventHandlers,
-        agoraRtmChannelEventHandler,
-        this,
-      ),
-    );
-  }
+  // void createEvents(
+  //   // AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
+  //   AgoraRtcEventHandlers agoraEventHandlers,
+  // ) async {
+  //   value.engine?.registerEventHandler(
+  //     await rtcEngineEventHandler(
+  //       agoraEventHandlers,
+  //       agoraRtmChannelEventHandler,
+  //       this,
+  //     ),
+  //   );
+  // }
 
-  void createRtmClientEvents(
-      AgoraRtmClientEventHandler agoraRtmClientEventHandler) {
-    rtmClientEventHandler(
-      agoraRtmClient: value.agoraRtmClient!,
-      agoraRtmClientEventHandler: agoraRtmClientEventHandler,
-      sessionController: this,
-    );
-  }
+  // void createRtmClientEvents(
+  //     AgoraRtmClientEventHandler agoraRtmClientEventHandler) {
+  //   // rtmClientEventHandler(
+  //   //   agoraRtmClient: value.agoraRtmClient!,
+  //   //   agoraRtmClientEventHandler: agoraRtmClientEventHandler,
+  //   //   sessionController: this,
+  //   // );
+  // }
 
   /// Function to set all the channel properties.
   void setChannelProperties(AgoraChannelData agoraChannelData) async {

@@ -29,10 +29,10 @@ class AgoraClient {
   final AgoraRtcEventHandlers? agoraEventHandlers;
 
   /// [AgoraRtmClientEventHandlers] is a class that contains all the Agora RTM Client event handlers. Use it to add your own functions or methods.
-  final AgoraRtmClientEventHandler? agoraRtmClientEventHandler;
+  // final AgoraRtmClientEventHandler? agoraRtmClientEventHandler;
 
   /// [AgoraRtmChannelEventHandlers] is a class that contains all the Agora RTM channel event handlers. Use it to add your own functions or methods.
-  final AgoraRtmChannelEventHandler? agoraRtmChannelEventHandler;
+  // final AgoraRtmChannelEventHandler? agoraRtmChannelEventHandler;
 
   bool _initialized = false;
 
@@ -41,8 +41,8 @@ class AgoraClient {
     this.enabledPermission,
     this.agoraChannelData,
     this.agoraEventHandlers,
-    this.agoraRtmClientEventHandler,
-    this.agoraRtmChannelEventHandler,
+    // this.agoraRtmClientEventHandler,
+    // this.agoraRtmChannelEventHandler,
   }) : _initialized = false;
 
   /// Useful to check if [AgoraClient] is ready for further usage
@@ -85,13 +85,13 @@ class AgoraClient {
     }
 
     if (agoraConnectionData.rtmEnabled) {
-      try {
-        await _sessionController.initializeRtm(
-            agoraRtmClientEventHandler ?? AgoraRtmClientEventHandler());
-      } catch (e) {
-        log("Error while initializing Agora RTM SDK. ${e.toString()}",
-            level: Level.error.value);
-      }
+      // try {
+      //   await _sessionController.initializeRtm(
+      //       agoraRtmClientEventHandler ?? AgoraRtmClientEventHandler());
+      // } catch (e) {
+      //   log("Error while initializing Agora RTM SDK. ${e.toString()}",
+      //       level: Level.error.value);
+      // }
     }
 
     if (agoraChannelData?.clientRoleType ==
@@ -103,10 +103,10 @@ class AgoraClient {
       await enabledPermission!.request();
     }
 
-    _sessionController.createEvents(
-      agoraRtmChannelEventHandler ?? AgoraRtmChannelEventHandler(),
-      agoraEventHandlers ?? AgoraRtcEventHandlers(),
-    );
+    // _sessionController.createEvents(
+    //   agoraRtmChannelEventHandler ?? AgoraRtmChannelEventHandler(),
+    //   agoraEventHandlers ?? AgoraRtcEventHandlers(),
+    // );
 
     if (agoraChannelData != null) {
       _sessionController.setChannelProperties(agoraChannelData!);

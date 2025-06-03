@@ -12,7 +12,7 @@ import 'package:agora_uikit/src/enums.dart';
 
 Future<RtcEngineEventHandler> rtcEngineEventHandler(
   AgoraRtcEventHandlers agoraEventHandlers,
-  AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
+  // AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
   SessionController sessionController,
 ) async {
   const String tag = "AgoraVideoUIKit";
@@ -178,9 +178,9 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
     sessionController.value =
         sessionController.value.copyWith(localUid: connection.localUid);
 
-    await rtmMethods(
-        agoraRtmChannelEventHandler: agoraRtmChannelEventHandler,
-        sessionController: sessionController);
+    // await rtmMethods(
+    //     agoraRtmChannelEventHandler: agoraRtmChannelEventHandler,
+    //     sessionController: sessionController);
 
     sessionController.value = sessionController.value.copyWith(
       mainAgoraUser: AgoraUser(
