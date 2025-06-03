@@ -153,7 +153,7 @@ class AgoraRtcEventHandlers {
   ///
   /// * [connection] The connection information. See RtcConnection .
   /// * [elapsed] Time elapsed (ms) from the local user calling joinChannel [2/2] until the SDK triggers this callback.
-  final void Function(VideoSourceType source, int elapsed)?
+  final void Function(RtcConnection connection, int elapsed)?
       onFirstLocalVideoFramePublished;
 
   /// Occurs when the first remote video frame is received and decoded.
@@ -293,7 +293,7 @@ class AgoraRtcEventHandlers {
   ///
   /// * [connection] The connection information. See RtcConnection .
   /// * [stats] The statistics of the local video stream. See LocalVideoStats .
-  final void Function(VideoSourceType source, LocalVideoStats stats)?
+  final void Function(RtcConnection connection, LocalVideoStats stats)?
       onLocalVideoStats;
 
   /// Reports the statistics of the video stream sent by each remote users.
@@ -698,23 +698,20 @@ class AgoraRtcEventHandlers {
   /// * [key] The key of the extension.
   /// * [provider] The name of the extension provider.
   /// * [extName] The name of the extension.
-  final void Function(
-          String provider, String extension, String key, String value)?
+  final void Function(ExtensionContext provider, String key, String value)?
       onExtensionEvent;
 
   /// Occurs when the extension is enabled.
   /// After a successful call of enableExtension (true), the extension triggers this callback.
   ///
-  /// * [provider] The name of the extension provider.
-  /// * [extName] The name of the extension.
-  final void Function(String provider, String extension)? onExtensionStarted;
+  /// * [extensionContext] The context of the extension.
+  final void Function(ExtensionContext extensionContext)? onExtensionStarted;
 
   /// Occurs when the extension is disabled.
   /// After a successful call of enableExtension (false), this callback is triggered.
   ///
-  /// * [extName] The name of the extension.
-  /// * [provider] The name of the extension provider.
-  final void Function(String provider, String extension)? onExtensionStopped;
+  /// * [extensionContext] The context of the extension.
+  final void Function(ExtensionContext extensionContext)? onExtensionStopped;
 
   /// Occurs when the extension runs incorrectly.
   /// When calling enableExtension (true) fails or the extension runs in error, the extension triggers this callback and reports the error code and reason.
@@ -723,8 +720,7 @@ class AgoraRtcEventHandlers {
   /// * [extension] The name of the extension.
   /// * [error] Error code. For details, see the extension documentation provided by the extension provider.
   /// * [message] Reason. For details, see the extension documentation provided by the extension provider.
-  final void Function(
-          String provider, String extension, int error, String message)?
+  final void Function(ExtensionContext provider, int error, String message)?
       onExtensionError;
 
   /// @nodoc
