@@ -1,5 +1,6 @@
 name: agora_uikit_example
 description: Demonstrates how to use the agora_flutter_uikit plugin.
+version: 1.0.0
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.

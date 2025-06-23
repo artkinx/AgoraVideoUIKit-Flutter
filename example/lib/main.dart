@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final AgoraClient client = AgoraClient(
     agoraConnectionData: AgoraConnectionData(
-      appId: "<--Add your App Id here-->",
+      appId: "1f3d8e204746415ead89e6c671b369e9",
       channelName: "test",
       username: "user",
     ),
